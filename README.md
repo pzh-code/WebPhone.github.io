@@ -1,7 +1,6 @@
 # WebPhone
 
 ## 项目解释: 
-交流QQ群: 901794327
 
 [试用WebPhone](https://pzh-code.github.io/WebPhone.github.io/)
 
