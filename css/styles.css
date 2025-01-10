@@ -90,8 +90,16 @@ body {
 
 .call-timer {
     cursor: default;
-    font-size: 20px;
+    font-size: 12px;
     color: #333;
+    height: 15px;
+}
+
+.province {
+    cursor: default;
+    font-size: 12px;
+    color: #333;
+    height: 15px;
 }
 
 .version {
@@ -185,7 +193,7 @@ body {
 
 .dialer {
     width: 240px;
-    height: 420px;
+    height: 410px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -194,23 +202,17 @@ body {
     flex-direction: column;
 }
 
-.dialer-dragging {
-    position: absolute;
-    z-index: 1000;
-    cursor: move;
-}
-
 .dialer-display {
     width: 200px;
-    height: 50px;
-    font-size: 28px;
+    height: 40px;
+    font-size: 25px;
     text-align: center;
     border: none;
     outline: none;
     background-color: transparent;
     color: #333;
     border-bottom: 1px solid #ccc;
-    margin: 20px 20px 0 20px;
+    margin: 32px 20px 0 20px;
 }
 
 .dialer-keypad {

@@ -2,169 +2,178 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebPhone</title>
-  <link href="css/material_icon.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <script src="https://jssip.net/download/releases/jssip-3.10.0.min.js"></script>
-  <script src="script/ringback.js"></script>
-  <script src="script/app.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebPhone</title>
+    <link href="css/material_icon.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://jssip.net/download/releases/jssip-3.10.0.min.js"></script>
+    <script src="script/app.min.js"></script>
+    <script src="script/ui.min.js"></script>
 </head>
 
-<body>
-  <div class="dialer">
+<body onload="UI.Load()" onbeforeunload="UI.UnLoad()">
+<div class="dialer">
     <div class="status-bar">
-      <div class="user-avatar-dropdown">
-        <i class="material-icons user-avatar-icon">account_circle</i>
-        <div class="dropdown-menu hidden">
-          <div class="dropdown-group">
-          </div>
-          <div class="dropdown-group">
-            <a href="#" class="dropdown-item" data-action="online">
-              <i class="material-icons" style="color: green;">fiber_manual_record</i>在线(签入)
-            </a>
-            <a href="#" class="dropdown-item" data-action="logout">
-              <i class="material-icons" style="color: orange;">fiber_manual_record</i>签出
-            </a>
-            <a href="#" class="dropdown-item" data-action="offline">
-              <i class="material-icons" style="color: gray;">fiber_manual_record</i>离线
-            </a>
-          </div>
-          <div class="dropdown-group">
-            <a href="#" class="dropdown-item" data-action="edit-account">
-              <i class="material-icons">edit</i>编辑账号
-            </a>
-            <a href="#" class="dropdown-item" data-action="add-account">
-              <i class="material-icons">add</i>添加账号
-            </a>
-            <a href="#" class="dropdown-item" data-action="delete-account">
-              <i class="material-icons">delete</i>删除账号
-            </a>
-          </div>
-          <div class="dropdown-group">
-            <a href="#" class="dropdown-item" data-action="reset-settings">
-              <i class="material-icons">settings</i>重置设置
-            </a>
-            <a href="#" class="dropdown-item" data-action="settings">
-              <i class="material-icons">settings</i>设置
-            </a>
-          </div>
+        <div class="user-avatar-dropdown">
+            <i class="material-icons user-avatar-icon">account_circle</i>
+            <div class="dropdown-menu hidden">
+                <div class="dropdown-group">
+                </div>
+                <div class="dropdown-group">
+                    <a href="#" class="dropdown-item" data-action="online">
+                        <i class="material-icons" style="color: green;">fiber_manual_record</i>在线(签入)
+                    </a>
+                    <a href="#" class="dropdown-item" data-action="logout">
+                        <i class="material-icons" style="color: orange;">fiber_manual_record</i>签出
+                    </a>
+                    <a href="#" class="dropdown-item" data-action="offline">
+                        <i class="material-icons" style="color: gray;">fiber_manual_record</i>离线
+                    </a>
+                </div>
+                <div class="dropdown-group">
+                    <a href="#" class="dropdown-item" data-action="edit-account">
+                        <i class="material-icons">edit</i>编辑账号
+                    </a>
+                    <a href="#" class="dropdown-item" data-action="add-account">
+                        <i class="material-icons">add</i>添加账号
+                    </a>
+                    <a href="#" class="dropdown-item" data-action="delete-account">
+                        <i class="material-icons">delete</i>删除账号
+                    </a>
+                </div>
+                <div class="dropdown-group">
+                    <a href="#" class="dropdown-item" data-action="reset-settings">
+                        <i class="material-icons">settings</i>重置设置
+                    </a>
+                    <a href="#" class="dropdown-item" data-action="settings">
+                        <i class="material-icons">settings</i>设置
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-      <i class="display-user"></i>
-      <i class="material-icons call-status-icon hidden">call_outgoing</i>
-      <i class="material-icons microphone-icon">mic</i>
-      <div class="volume-slider-container speaker-volume-slider">
-        <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider">
-      </div>
-      <i class="material-icons speaker-icon">volume_up</i>
-      <div class="volume-slider-container mic-volume-slider">
-        <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider">
-      </div>
-      <i class="material-icons network-icon no-network">signal_wifi_3_bar</i>
+        <i class="display-user"></i>
+        <i class="material-icons call-status-icon hidden">call_outgoing</i>
+        <i class="material-icons microphone-icon">mic</i>
+        <div class="volume-slider-container speaker-volume-slider">
+            <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider">
+        </div>
+        <i class="material-icons speaker-icon">volume_up</i>
+        <div class="volume-slider-container mic-volume-slider">
+            <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume-slider">
+        </div>
+        <i class="material-icons network-icon no-network">signal_wifi_3_bar</i>
     </div>
     <input class="dialer-display" id="display" type="tel">
     <div class="container">
-      <span class="call-timer hidden">00:00</span>
-    </div>
-    <div class="dialer-keypad">
-      <button class="dialer-button" data-digit="1">1</button>
-      <button class="dialer-button" data-digit="2">2</button>
-      <button class="dialer-button" data-digit="3">3</button>
-      <button class="dialer-button" data-digit="4">4</button>
-      <button class="dialer-button" data-digit="5">5</button>
-      <button class="dialer-button" data-digit="6">6</button>
-      <button class="dialer-button" data-digit="7">7</button>
-      <button class="dialer-button" data-digit="8">8</button>
-      <button class="dialer-button" data-digit="9">9</button>
-      <button class="dialer-button" data-digit="*">*</button>
-      <button class="dialer-button" data-digit="0">0</button>
-      <button class="dialer-button" data-digit="#">#</button>
-    </div>
-    <div class="call-buttons">
-      <button class="call-button call-left-button hidden">
-        <i class="material-icons">pause</i>
-      </button>
-      <button class="call-button call-hangup-button">
-        <i class="material-icons">phone</i>
-      </button>
-      <button class="call-button call-right-button hidden">
-        <i class="material-icons">call_split</i>
-      </button>
+        <span class="province hidden">    </span>
     </div>
     <div class="container">
-      <span class="version">版本号: 1.0.0</span>
+        <span class="call-timer hidden">00:00</span>
     </div>
-  </div>
-  <div id="phoneModal" class="modal">
+    <div class="dialer-keypad">
+        <button class="dialer-button" data-digit="1">1</button>
+        <button class="dialer-button" data-digit="2">2</button>
+        <button class="dialer-button" data-digit="3">3</button>
+        <button class="dialer-button" data-digit="4">4</button>
+        <button class="dialer-button" data-digit="5">5</button>
+        <button class="dialer-button" data-digit="6">6</button>
+        <button class="dialer-button" data-digit="7">7</button>
+        <button class="dialer-button" data-digit="8">8</button>
+        <button class="dialer-button" data-digit="9">9</button>
+        <button class="dialer-button" data-digit="*">*</button>
+        <button class="dialer-button" data-digit="0">0</button>
+        <button class="dialer-button" data-digit="#">#</button>
+    </div>
+    <div class="call-buttons">
+        <button class="call-button call-left-button hidden">
+            <i class="material-icons">pause</i>
+        </button>
+        <button class="call-button call-hangup-button">
+            <i class="material-icons">phone</i>
+        </button>
+        <button class="call-button call-right-button hidden">
+            <i class="material-icons">call_split</i>
+        </button>
+    </div>
+    <div class="container">
+        <span class="version">版本号: 1.0.0</span>
+    </div>
+</div>
+<div id="phoneModal" class="modal">
     <div class="modal-header">
-      <i class="material-icons" id="modalIcon">add</i> <span id="modalTitle">添加用户</span>
+        <i class="material-icons" id="modalIcon">add</i> <span id="modalTitle">添加用户</span>
     </div>
     <div class="modal-content">
-      <form id="addUserForm" style="display: none;">
-        <div class="form-group">
-          <input type="text" id="note" name="note" placeholder="备注" required>
-        </div>
-        <div class="form-group">
-          <input type="text" id="server" name="server" placeholder="服务(wss://localhost)" required>
-        </div>
-        <div class="form-group">
-          <input type="text" id="username" name="username" placeholder="用户名" required>
-        </div>
-        <div class="form-group">
-          <input type="text" id="domain" name="domain" placeholder="域名" required>
-        </div>
-        <div class="form-group">
-          <input type="text" id="loginName" name="loginName" placeholder="登录名" required>
-        </div>
-        <div class="form-group">
-          <input type="password" id="password" name="password" placeholder="密码" required>
-        </div>
-        <div class="form-group">
-          <select id="transport" name="transport" required>
-            <option value="wss" selected>Transport (WSS)</option>
-            <option value="ws">Transport (WS)</option>
-          </select>
-        </div>
-        <div class="form-buttons">
-          <button id="cancelUser" type="button" class="cancel-button">取消</button>
-          <button id="saveUser" type="submit" class="add-button">保存</button>
-        </div>
-      </form>
-      <form id="settingForm" style="display: none;">
-        <div class="form-group">
-          <input type="text" id="userAgent" name="userAgent" placeholder="UserAgent" required>
-        </div>
-        <div class="form-group">
-          <input type="number" id="sessionExpires" name="sessionExpires" placeholder="SessionExpires" required>
-        </div>
-        <div class="form-group">
-          <input type="number" id="minSessionExpires" name="minSessionExpires" placeholder="MinSessionExpires" required>
-        </div>
-        <div class="form-group">
-          <input type="text" id="iceServer" name="iceServer" placeholder="IceServer" required>
-        </div>
-        <div class="form-group">
-          <select id="autoAnswer" name="autoAnswer" required>
-            <option value="true" selected>是否自动接听(是)</option>
-            <option value="false">是否自动接听(否)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <select id="reconnect" name="reconnect" required>
-            <option value="true" selected>是否自动重连(是)</option>
-            <option value="false">是否自动重连(否)</option>
-          </select>
-        </div>
-        <div class="form-buttons">
-          <button id="cancelSetting" type="button" class="cancel-button">取消</button>
-          <button id="saveSetting" type="submit" class="add-button">保存</button>
-        </div>
-      </form>
+        <form id="addUserForm" style="display: none;">
+            <div class="form-group">
+                <input type="text" id="note" name="note" placeholder="备注" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="server" name="server" placeholder="服务(wss://localhost)" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="用户名" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="domain" name="domain" placeholder="域名" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="loginName" name="loginName" placeholder="登录名" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="密码" required>
+            </div>
+            <div class="form-group">
+                <select id="transport" name="transport" required>
+                    <option value="wss" selected>Transport (WSS)</option>
+                    <option value="ws">Transport (WS)</option>
+                </select>
+            </div>
+            <div class="form-buttons">
+                <button id="cancelUser" type="button" class="cancel-button">取消</button>
+                <button id="saveUser" type="submit" class="add-button">保存</button>
+            </div>
+        </form>
+        <form id="settingForm" style="display: none;">
+            <div class="form-group">
+                <input type="text" id="userAgent" name="userAgent" placeholder="UserAgent" required>
+            </div>
+            <div class="form-group">
+                <input type="number" id="sessionExpires" name="sessionExpires" placeholder="SessionExpires" required>
+            </div>
+            <div class="form-group">
+                <input type="number" id="minSessionExpires" name="minSessionExpires" placeholder="MinSessionExpires"
+                       required>
+            </div>
+            <div class="form-group">
+                <select id="stun" name="stun" required>
+                    <option value="true">是否开启stun服务(是)</option>
+                    <option value="false" selected>是否开启stun(否)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" id="iceServer" name="iceServer" placeholder="IceServer">
+            </div>
+            <div class="form-group">
+                <select id="autoAnswer" name="autoAnswer" required>
+                    <option value="true" selected>是否自动接听(是)</option>
+                    <option value="false">是否自动接听(否)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="reconnect" name="reconnect" required>
+                    <option value="true" selected>是否自动重连(是)</option>
+                    <option value="false">是否自动重连(否)</option>
+                </select>
+            </div>
+            <div class="form-buttons">
+                <button id="cancelSetting" type="button" class="cancel-button">取消</button>
+                <button id="saveSetting" type="submit" class="add-button">保存</button>
+            </div>
+        </form>
     </div>
-  </div>
+</div>
 </body>
-
 </html>
